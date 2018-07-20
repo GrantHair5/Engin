@@ -28,7 +28,7 @@ html, body{
       -webkit-transform: scaleX(-1);
       transform: scaleX(-1);
   }
-  .madButtonTing{
+  .camera--trigger__button{
     position: fixed;
     bottom: 30px;
     left: calc(50% - 45px);
