@@ -1,0 +1,38 @@
+<html lang=”en”>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Name of the app -->
+		<title>Camera App</title>
+
+		<!-- Link to main style sheet -->
+		<link rel="stylesheet" href="css/style.css"> 
+	</head>
+	<body>
+
+		<!-- Camera -->
+		<main id="camera" style=" -webkit-transform: scaleX(-1); transform: scaleX(-1);">
+
+		    <!-- Camera sensor -->
+		    <canvas id="camera--sensor" ></canvas>
+		    
+		    <!-- Camera view -->
+		    <video id="camera--view" autoplay playsinline></video>
+		    
+		    <!-- Camera output -->
+		    <img src="//:0" alt="" id="camera--output" style="display:none">
+
+		   
+		</main>
+		<input type="range" id="camera--zoom" style="display:none;">
+		 <!-- Camera trigger -->
+		 <span id="camera--trigger__outer">
+		 <button id="camera--trigger" class="madButtonTing"></button>
+		 </span>
+
+		<!-- Reference to your JavaScript file -->
+		<script src="js/app.js"></script> 
+	</body>
+</html>
