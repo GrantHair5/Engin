@@ -31,7 +31,7 @@ html, body{
   .camera--trigger__button{
     position: fixed;
     bottom: 30px;
-    left: calc(50% - 45px);
+    left: calc(50% - 40px);
     padding: 35px 35px;
     background-color:rgba(192,192,192,0.0);
     border: 5px solid white; 
@@ -43,11 +43,33 @@ html, body{
     outline:none;
 }
     #camera--trigger:active{
-        padding: 40px 40px;
-        left: calc(50% - 50px);
+        padding: 38px 38px;
+        left: calc(50% - 45px);
     }
 
     .camera--trigger__clicked{
     visibility: hidden;
     transition: visibility 0.1s, opacity 0.5s linear;
+    }
+    .camera--outer__clicked{
+        display:none; 
+    }
+    .image--sender__button{
+
+        display:none;
+      }
+      .image--sender__button__visible{
+        display:block; 
+        position: fixed;
+        bottom: 30px;
+        left: calc(90% - 40px);
+        padding: 20px 20px;
+        background-color:dodgerblue;
+        border-radius: 100%;
+        text-align: center;
+        color:#fff;
+        border: 2px solid white; 
+      }
+      #camera--trigger:focus{
+        outline:none;
     }

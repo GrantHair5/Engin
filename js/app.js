@@ -15,6 +15,7 @@ const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger");
+    imageSender = document.getElementById("image--sender");
 
 const input = document.querySelector('input[type="range"]');
 
@@ -41,9 +42,17 @@ cameraTrigger.onclick = function () {
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     document.getElementById("camera--output").style.display = "block";
     cameraOutput.classList.add("taken");
-    cameraTrigger.classList.add("camera--trigger__clicked")
+    cameraTrigger.classList.add("camera--trigger__clicked");
+    document.getElementById("camera--trigger__outer").classList.add("camera--outer__clicked");
+    imageSender.classList.add("image--sender__button__visible");
     //track.stop();
 };
+
+imageSender.onclick = function(){
+    var base = cameraSensor.toDataURL();
+    var sanitisedBase = base.replace("data:image/png;base64,", "");  
+    console.log(sanitisedBase); 
+}
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
