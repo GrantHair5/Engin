@@ -52,8 +52,58 @@ cameraTrigger.onclick = function() {
 imageSender.onclick = function() {
   var base = cameraSensor.toDataURL();
   var sanitisedBase = base.replace("data:image/png;base64,", "");
-  console.log(sanitisedBase);
+
+  postData(`https://enginapi.azurewebsites.net/api/Engin`, {
+    image: sanitisedBase
+  })
+    .then(data => {
+      var url = "https://www.arnoldclark.com/used-cars/search?"
+        var response = JSON.stringify(data);
+      var x = JSON.parse(response); 
+      for (var i = 0; i < x.length; i++) {
+        var jsonObj = x[i];
+        console.log(jsonObj.tag);
+        if(x.length === 2){
+            switch(i){
+                case 0:
+                url = url + "make=" + jsonObj.tag + "&&";
+                break;
+                case 1: 
+                url = url + "model=" + jsonObj.tag;
+                break;
+                default:
+                break;
+            }
+        }
+        else{
+            url = url + "make=" + jsonObj.tag;
+        }
+        window.location.href = url;
+    }
+    }) // JSON-string from `response.json()` call
+    .catch(error => console.error(error));
 };
+
+imageCancel.onclick = function() {
+  location.reload();
+};
+
+function postData(url = ``, data = {}) {
+  // Default options are marked with *
+  return fetch(url, {
+    method: "POST", // *GET, POST, PUT, DELETE, etc.
+    mode: "cors", // no-cors, cors, *same-origin
+    cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: "same-origin", // include, same-origin, *omit
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+      // "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow", // manual, *follow, error
+    referrer: "no-referrer", // no-referrer, *client
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  }).then(response => response.json()); // parses response to JSON
+}
 
 // Start the video stream when the window loads
 window.addEventListener("load", cameraStart, false);
