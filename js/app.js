@@ -17,6 +17,7 @@ const cameraView = document.querySelector("#camera--view"),
   cameraTrigger = document.querySelector("#camera--trigger"),
   imageSender = document.getElementById("image--sender"),
   imageCancel = document.getElementById("image--cancel"),
+  loader = document.getElementById("loader"),
   input = document.querySelector('input[type="range"]');
 
 // Access the device camera and stream to cameraView
@@ -46,13 +47,15 @@ cameraTrigger.onclick = function() {
     .classList.add("camera--outer__clicked");
   imageSender.classList.add("image--sender__button__visible");
   imageCancel.classList.add("image--cancel__button__visible");
-  //track.stop();
+  track.stop();
 };
 
 imageSender.onclick = function() {
+    track.stop();
+    loader.classList.add("loader--visible");
+    cameraOutput.classList.add("frosty")
   var base = cameraSensor.toDataURL();
   var sanitisedBase = base.replace("data:image/png;base64,", "");
-
   postData(`https://enginapi.azurewebsites.net/api/Engin`, {
     image: sanitisedBase
   })
