@@ -62,27 +62,8 @@ imageSender.onclick = function() {
     .then(data => {
       var url = "https://www.arnoldclark.com/used-cars/search?"
         var response = JSON.stringify(data);
-      var x = JSON.parse(response); 
-      for (var i = 0; i < x.length; i++) {
-        var jsonObj = x[i];
-        console.log(jsonObj.tag);
-        if(x.length === 2){
-            switch(i){
-                case 0:
-                url = url + "make=" + jsonObj.tag + "&&";
-                break;
-                case 1: 
-                url = url + "model=" + jsonObj.tag;
-                break;
-                default:
-                break;
-            }
-        }
-        else{
-            url = url + "make=" + jsonObj.tag;
-        }
-        window.location.href = url;
-    }
+        var responseObject = JSON.parse(response); 
+        window.location.href = url + "make=" + responseObject.manufacturer + "&model=" + responseObject.model;
     }) // JSON-string from `response.json()` call
     .catch(error => console.error(error));
 };
