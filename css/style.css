@@ -1,75 +1,102 @@
-html, body{
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-  }
-  
-  #camera, #camera--view, #camera--sensor, #camera--output{
-      position: fixed;
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-  }
-  
-  #camera--view, #camera--sensor, #camera--output{
-      transform: scaleX(-1);
-      filter: FlipH;
-  }
-
-  #camera--zoom{
-      width: 200px;
-      position: fixed;
-      bottom: 100px;
-      left: calc(50% - 100px);
-  }
-
-  #camera--sensor{
-      -webkit-transform: scaleX(-1);
-      transform: scaleX(-1);
-  }
-  .camera--trigger__button{
-    position: fixed;
-    bottom: 30px;
-    left: calc(50% - 40px);
-    padding: 35px 35px;
-    background-color:rgba(192,192,192,0.0);
-    border: 5px solid white; 
-    border-radius: 100%;
-    text-align: center;
-    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-  }
-  #camera--trigger:focus{
-    outline:none;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
-    #camera--trigger:active{
-        padding: 38px 38px;
-        left: calc(50% - 45px);
-    }
 
-    .camera--trigger__clicked{
-    visibility: hidden;
-    transition: visibility 0.1s, opacity 0.5s linear;
-    }
-    .camera--outer__clicked{
-        display:none; 
-    }
-    .image--sender__button{
+#camera,
+#camera--view,
+#camera--sensor,
+#camera--output {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 
-        display:none;
-      }
-      .image--sender__button__visible{
-        display:block; 
-        position: fixed;
-        bottom: 30px;
-        left: calc(90% - 40px);
-        padding: 20px 20px;
-        background-color:dodgerblue;
-        border-radius: 100%;
-        text-align: center;
-        color:#fff;
-        border: 2px solid white; 
-      }
-      #camera--trigger:focus{
-        outline:none;
-    }
+#camera--view,
+#camera--sensor,
+#camera--output {
+  transform: scaleX(-1);
+  filter: FlipH;
+}
+
+#camera--zoom {
+  width: 200px;
+  position: fixed;
+  bottom: 100px;
+  left: calc(50% - 100px);
+}
+
+#camera--sensor {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.camera--trigger__button {
+  position: fixed;
+  bottom: 30px;
+  left: calc(50% - 40px);
+  padding: 35px 35px;
+  background-color: rgba(192, 192, 192, 0);
+  border: 5px solid white;
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
+#camera--trigger:focus {
+  outline: none;
+}
+#camera--trigger:active {
+  padding: 38px 38px;
+  left: calc(50% - 45px);
+}
+
+.camera--trigger__clicked {
+  visibility: hidden;
+  transition: visibility 0.1s, opacity 0.5s linear;
+}
+.camera--outer__clicked {
+  display: none;
+}
+.image--sender__button {
+  display: none;
+}
+.image--sender__button__visible {
+  display: block;
+  position: fixed;
+  bottom: 30px;
+  left: calc(90% - 40px);
+  padding: 20px 20px;
+  background-color: #1e90ff;
+  border-radius: 100%;
+  text-align: center;
+  color: #fff;
+  border: 2px solid white;
+}
+#camera--trigger:focus {
+  outline: none;
+}
+
+.image--cancel__button {
+  display: none;
+}
+.image--cancel__button__visible {
+  display: block;
+  position: fixed;
+  bottom: 30px;
+  left: calc(12% - 40px);
+  padding: 20px 20px;
+  background-color: #ff0000;
+  border-radius: 100%;
+  text-align: center;
+  color: #fff;
+  border: 2px solid white;
+}
+.search {
+  font-size: 2em;
+}
+.cancel {
+  font-size: 2em;
+}
