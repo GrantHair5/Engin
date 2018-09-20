@@ -68,7 +68,7 @@ body {
   position: fixed;
   bottom: 30px;
   left: calc(90% - 40px);
-  padding: 20px 20px;
+  padding: 15px 15px;
   background-color: #1e90ff;
   border-radius: 100%;
   text-align: center;
@@ -86,8 +86,8 @@ body {
   display: block;
   position: fixed;
   bottom: 30px;
-  left: calc(12% - 40px);
-  padding: 20px 20px;
+  left: calc(15% - 40px);
+  padding: 15px 15px;
   background-color: #ff0000;
   border-radius: 100%;
   text-align: center;
