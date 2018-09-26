@@ -28,7 +28,7 @@ app.post('/test', cors(),function(req,res, next){
     
     var json = {}; 
     var xhr = new XMLHttpRequest();
-    var url = "http://localhost:63963/api/Engin";
+    var url = "http://dev.engin.aftersales.arnoldclark.com/api/Engin";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function () {
