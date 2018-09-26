@@ -63,7 +63,7 @@ imageSender.onclick = function() {
        var url = "https://www.arnoldclark.com/used-cars/search?"
          var response = JSON.stringify(data);
         var responseObject = JSON.parse(response);
-        window.location.href = url + "make=" + responseObject.make + "&model=" + responseObject.model.substr(0,responseObject.model.indexOf(' ')) + "&photos_only=true&unreserved_only=true";
+        window.location.href = url + "keywords=" + responseObject.make + " " + responseObject.model.substr(0,responseObject.model.indexOf(' ') + 1 ) + "&photos_only=true&unreserved_only=true";
     }) // JSON-string from `response.json()` call
     .catch(error => alert(error));
 };
