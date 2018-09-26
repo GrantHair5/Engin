@@ -56,14 +56,14 @@ imageSender.onclick = function() {
     cameraOutput.classList.add("frosty")
   var base = cameraSensor.toDataURL();
   var sanitisedBase = base.replace("data:image/png;base64,", "");
-  postData(`https://5c848d70.ngrok.io/test`, {
+  postData(`https://a75f0e0f.ngrok.io/test`, {
     image: sanitisedBase
-  })
+  })  
     .then(data => {
        var url = "https://www.arnoldclark.com/used-cars/search?"
          var response = JSON.stringify(data);
-        var responseObject = JSON.parse(response); 
-        window.location.href = url + "make=" + responseObject.make + "&model=" + responseObject.model.split(" ")[0] + "&photos_only=true&unreserved_only=true";
+        var responseObject = JSON.parse(response);
+        window.location.href = url + "make=" + responseObject.make + "&model=" + responseObject.model.substr(0,responseObject.model.indexOf(' ')) + "&photos_only=true&unreserved_only=true";
     }) // JSON-string from `response.json()` call
     .catch(error => alert(error));
 };
