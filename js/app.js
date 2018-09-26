@@ -56,16 +56,16 @@ imageSender.onclick = function() {
     cameraOutput.classList.add("frosty")
   var base = cameraSensor.toDataURL();
   var sanitisedBase = base.replace("data:image/png;base64,", "");
-  postData(`https://enginapi.azurewebsites.net/api/Engin`, {
+  postData(`https://a75f0e0f.ngrok.io/test`, {
     image: sanitisedBase
-  })
+  })  
     .then(data => {
-      var url = "https://www.arnoldclark.com/used-cars/search?"
-        var response = JSON.stringify(data);
-        var responseObject = JSON.parse(response); 
-        window.location.href = url + "make=" + responseObject.manufacturer + "&model=" + responseObject.model;
+       var url = "https://www.arnoldclark.com/used-cars/search?"
+         var response = JSON.stringify(data);
+        var responseObject = JSON.parse(response);
+        window.location.href = url + "make=" + responseObject.make + "&model=" + responseObject.model.substr(0,responseObject.model.indexOf(' ')) + "&photos_only=true&unreserved_only=true";
     }) // JSON-string from `response.json()` call
-    .catch(error => console.error(error));
+    .catch(error => alert(error));
 };
 
 imageCancel.onclick = function() {
@@ -86,7 +86,8 @@ function postData(url = ``, data = {}) {
     redirect: "follow", // manual, *follow, error
     referrer: "no-referrer", // no-referrer, *client
     body: JSON.stringify(data) // body data type must match "Content-Type" header
-  }).then(response => response.json()); // parses response to JSON
+  }).then(response => response.json())
+  .catch(error => alert("ERROR " + error)) // parses response to JSON
 }
 
 // Start the video stream when the window loads
