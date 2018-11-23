@@ -43,15 +43,11 @@ app.post('/test', cors(),function(req,res, next){
         res.end(JSON.stringify({"Error":true, "ErrorMessage": xhr.responseText}));
      }
     };
-  
-  
     var data = JSON.stringify(
      req.body
     );
-
     xhr.send(data); 
   });
-
 
 app.listen(3000);
 
