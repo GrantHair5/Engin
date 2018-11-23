@@ -24,17 +24,17 @@ const cameraView = document.querySelector("#camera--view"),
 function cameraStart() {
   navigator.mediaDevices
     .getUserMedia(constraints)
-    .then(function(mediaStream) {
+    .then(function (mediaStream) {
       track = mediaStream.getVideoTracks()[0];
       cameraView.srcObject = mediaStream;
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.error("Oops. Something is broken.", error);
     });
 }
 
 // Take a picture when cameraTrigger is tapped
-cameraTrigger.onclick = function() {
+cameraTrigger.onclick = function () {
   cameraSensor.width = cameraView.videoWidth;
   cameraSensor.height = cameraView.videoHeight;
   cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
@@ -50,25 +50,29 @@ cameraTrigger.onclick = function() {
   track.stop();
 };
 
-imageSender.onclick = function() {
-    track.stop();
-    loader.classList.add("loader--visible");
-    cameraOutput.classList.add("frosty")
+imageSender.onclick = function () {
+  track.stop();
+  loader.classList.add("loader--visible");
+  cameraOutput.classList.add("frosty")
   var base = cameraSensor.toDataURL();
   var sanitisedBase = base.replace("data:image/png;base64,", "");
-  postData(`https://a75f0e0f.ngrok.io/test`, {
+  
+  
+  postData(document.location.href + "test", {
     image: sanitisedBase
-  })  
-    .then(data => {
-       var url = "https://www.arnoldclark.com/used-cars/search?"
-         var response = JSON.stringify(data);
-        var responseObject = JSON.parse(response);
-        window.location.href = url + "make=" + responseObject.make + "&model=" + responseObject.model.substr(0,responseObject.model.indexOf(' ')) + "&photos_only=true&unreserved_only=true";
-    }) // JSON-string from `response.json()` call
-    .catch(error => alert(error));
+  }).then(data => {
+    var url = "https://www.arnoldclark.com/used-cars/search?"
+    var response = JSON.stringify(data);
+    var object = JSON.parse(response)
+    if(object.Error){
+       alert(object.ErrorMessage); location.reload()
+    }
+     var responseObject = JSON.parse(response);
+   window.location.href = url + "make=" + responseObject.make + "&model=" + responseObject.model.substr(0,responseObject.model.indexOf(' ')) + "&photos_only=true&unreserved_only=true";
+  }) // JSON-string from `response.json()` call
 };
 
-imageCancel.onclick = function() {
+imageCancel.onclick = function () {
   location.reload();
 };
 
@@ -87,7 +91,7 @@ function postData(url = ``, data = {}) {
     referrer: "no-referrer", // no-referrer, *client
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   }).then(response => response.json())
-  .catch(error => alert("ERROR " + error)) // parses response to JSON
+
 }
 
 // Start the video stream when the window loads

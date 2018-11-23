@@ -31,12 +31,20 @@ app.post('/test', cors(),function(req,res, next){
     var url = "http://dev.engin.aftersales.arnoldclark.com/api/Engin";
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
+   
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
          json = JSON.parse(xhr.responseText);
         res.end(JSON.stringify(json));
       }
+      else if (xhr.readyState === 4 && xhr.status === 400) {
+        console.log(xhr.status);
+        console.log(xhr.responseText);
+        res.end(JSON.stringify({"Error":true, "ErrorMessage": xhr.responseText}));
+     }
     };
+  
+  
     var data = JSON.stringify(
      req.body
     );
